@@ -5,16 +5,19 @@ pipeline{
             maven "M3"
         }
         stages{
-            stage ('Compile Stage'){
+           stage ('Git Checkout'){
                 steps{
-                    sh 'mvn clean'
-                    sh 'mvn compile'
+                checkout scm
                 }
-            }
-            stage ('Testing Stage'){
-                 steps{
-                     sh 'mvn test'
-                 }
-             }
+           }
+           stage('Maven Build') {
+                steps{
+                    sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                }
+           }
+           stage('Junit Test Reports'){
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archiveArtifacts 'target/*.jar'
+           }
         }
 }
