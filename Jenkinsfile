@@ -19,7 +19,7 @@ pipeline{
 
 		    stage('JunitTestResults') {
 		        steps{
-	                junit '**/target/surefire-reports/*.xml'
+	                junit 'target/surefire-reports/*.xml'
                     archiveArtifacts 'target/*.jar'
 			    }
             }
