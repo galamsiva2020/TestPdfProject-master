@@ -11,16 +11,17 @@ pipeline{
                 }
            }
 
-		stage('Maven Build'){
-		steps{
-		    sh '${MAVEN_HOME}/bin/mvn -B verify'
-           }
-			}
+		    stage('Maven Build'){
+		        steps{
+		             sh '${MAVEN_HOME}/bin/mvn -B verify'
+                }
+		    }
 
-		stage('JunitTestResults') {
-		steps{
-	        junit '**/target/surefire-reports/TEST-*.xml'
-              archiveArtifacts 'target/*.jar'
-			  }
+		    stage('JunitTestResults') {
+		        steps{
+	                junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+			    }
+            }
         }
 }
