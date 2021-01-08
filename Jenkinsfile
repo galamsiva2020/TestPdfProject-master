@@ -7,21 +7,21 @@ pipeline{
         stages{
            stage ('Git Checkout'){
                 steps{
-                checkout scm
+                  checkout scm
                 }
            }
 
-		    stage('Maven Build'){
-		        steps{
-		             sh '${MAVEN_HOME}/bin/mvn -B verify'
+	   stage('Maven Build'){
+	        steps{
+		   sh '${MAVEN_HOME}/bin/mvn -B verify'
                 }
-		    }
+	   }
 
-		    stage('JunitTestResults') {
-		        steps{
-	                junit 'target/surefire-reports/*.xml'
-                    archiveArtifacts 'target/*.jar'
-			    }
+	   stage('JunitTestResults') {
+		 steps{
+	             junit 'target/surefire-reports/*.xml'
+                     archiveArtifacts 'target/*.jar'
+		    }
             }
         }
 }
