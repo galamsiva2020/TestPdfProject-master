@@ -10,16 +10,17 @@ pipeline{
                 checkout scm
                 }
            }
-           stage('Maven Build and Junit Test Reports') {
-                steps{
-                    sh "mvn -Dmaven.test.failure.ignore=true clean package"
-                }
-                post{
-                     success {
-                                       junit '**/target/surefire-reports/TEST-*.xml'
-                                       archiveArtifacts 'target/*.jar'
-                      }
-                }
+
+		stage('Maven Build'){
+		steps{
+		    sh '${MAVEN_HOME}/bin/mvn -B verify'
            }
+			}
+
+		stage('JunitTestResults') {
+		steps{
+	        junit '**/target/surefire-reports/TEST-*.xml'
+              archiveArtifacts 'target/*.jar'
+			  }
         }
 }
