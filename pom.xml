@@ -39,15 +39,9 @@
             <version>1.0.5</version>
         </dependency>
  </dependencies>
-      <!-- <build>
+       <build>
         <plugins>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.4.12.v20180830</version>
-            </plugin>
-
-          
+                     
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -60,7 +54,11 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.2</version>
             </plugin>
-
+         <!-- <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.4.12.v20180830</version>
+            </plugin> -->       
         </plugins>
     </build>  -->   
 </project>
