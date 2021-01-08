@@ -13,21 +13,14 @@ pipeline{
 
 	   stage('Maven Build'){
 	        steps{
-		   sh '${MAVEN_HOME}/bin/mvn -B verify'
+		   sh 'mvn -Dmaven.test.failure.ignore=true clean package'
                 }
 	   }
 
 	   stage('JunitTestResults') {
 		 steps{
-		    sh './mvnw test'
-		 }
-		 post{
-		     always{
 	             junit '**/target/surefire-reports/TEST-*.xml'
                  archiveArtifacts 'target/*.jar'
-             }
-		 }
-
          }
 
        }
